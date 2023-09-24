@@ -9,7 +9,7 @@ describe("My Second Test Suite", function () {
     //Verifying the homepage (2)
     cy.get(".shop-menu > .nav > :nth-child(1)").should("be.visible");
 
-    //Signing up to the website
+    //Signing up to the website (3)
     cy.get(".shop-menu > .nav > :nth-child(4)").click();
     cy.get('[data-qa="signup-name"]').type("Mahfuzul Alam");
     cy.get('[data-qa="signup-email"]').type("mahfuzshanto12@gmail.com");
@@ -45,10 +45,10 @@ describe("My Second Test Suite", function () {
         cy.get('[data-qa="continue-button"]').click();
       }
 
-      //Logging out
+      //Logging out (4)
       cy.get(".shop-menu > .nav > :nth-child(4) > a").click();
 
-      //Logging with Wrong Credentials
+      //Logging with Wrong Credentials (5)
       cy.get('[data-qa="login-email"]').type("wrongName@gmail.com");
       cy.get('[data-qa="login-password"]').type("wrongPassword");
       cy.get('[data-qa="login-button"]').click();
@@ -65,7 +65,7 @@ describe("My Second Test Suite", function () {
       cy.get('[data-qa="login-email"]').clear();
       cy.get('[data-qa="login-password"]').clear();
 
-      // Log in with correct credentials
+      // Log in with correct credentials (6)
       cy.get('[data-qa="login-email"]').type("mahfuzshanto12@gmail.com");
       cy.get('[data-qa="login-password"]').type("123456");
       cy.get('[data-qa="login-button"]').click();
@@ -73,7 +73,7 @@ describe("My Second Test Suite", function () {
       // Add assertions for successful login
       cy.get(".features_items > .title").should("be.visible");
 
-      //Search product
+      //Search product (7)
       cy.get(".shop-menu > .nav > :nth-child(2) > a").click();
       cy.get("#search_product").type("Blue top");
       cy.get("#submit_search > .fa").click();
@@ -82,12 +82,12 @@ describe("My Second Test Suite", function () {
         ":nth-child(3) > .product-image-wrapper > .choose > .nav > li > a"
       ).click();
 
-      //adding producto to cart with -2 value
+      //adding producto to cart with -2 value (8,9)
       cy.get("#quantity").type("{selectall}{backspace}-2");
       cy.get(":nth-child(5) > .btn").click();
       cy.get("u").click();
 
-      //Verify Price, negative Quantity and Negative Total.
+      //Verify Price, negative Quantity and Negative Total. (10)
       cy.get(".cart_price > p").should("contain", "Rs. 500");
       cy.get(".cart_quantity").should("contain", "-2");
       cy.get(".cart_total_price").should("contain", "Rs. -1000");
@@ -96,7 +96,7 @@ describe("My Second Test Suite", function () {
       cy.get(".cart_quantity_delete > .fa").click();
       cy.get("#empty_cart > .text-center > a > u").click();
 
-      //Add the same Product to the cart, add a quantity of 10 for the product
+      //Add the same Product to the cart, add a quantity of 10 for the product (11)
       cy.get(
         ":nth-child(3) > .product-image-wrapper > .choose > .nav > li > a"
       ).click();
@@ -104,15 +104,15 @@ describe("My Second Test Suite", function () {
       cy.get(":nth-child(5) > .btn").click();
       cy.get("u").click();
 
-      // Verify Price, Quantity and Total.
+      // Verify Price, Quantity and Total. (12)
       cy.get(".cart_price > p").should("contain", "Rs. 500");
       cy.get(".cart_quantity").should("contain", "10");
       cy.get(".cart_total_price").should("contain", "Rs. 5000");
 
-      // Verify Proceed to Checkout Button is not disabled and click on the button
+      // Verify Proceed to Checkout Button is not disabled and click on the button (13)
       cy.get(".col-sm-6 > .btn").should("be.visible").click();
 
-      //Verify the details of DELIVERY ADDRESS and BILLING ADDRESS are the same.
+      //Verify the details of DELIVERY ADDRESS and BILLING ADDRESS are the same. (14)
       cy.get("#address_delivery")
         .invoke("text")
         .then((text) => {
@@ -133,7 +133,7 @@ describe("My Second Test Suite", function () {
           // Now, 'contentWithoutTitle' contains all the text content within the box without the title
           cy.log(contentWithoutTitle);
 
-          //Placing an Order and filling up the Payment details with dummy card information.
+          //Placing an Order and filling up the Payment details with dummy card information.(15)
           cy.get(":nth-child(7) > .btn").click();
           cy.get('[data-qa="name-on-card"]').type("Mahfuz");
           cy.get('[data-qa="card-number"]').type("1234567890123456");
@@ -142,7 +142,7 @@ describe("My Second Test Suite", function () {
           cy.get('[data-qa="expiry-year"]').type("2026");
           cy.get('[data-qa="pay-button"]').click();
 
-          // Downloading the invoice.
+          // Downloading the invoice. (16)
           cy.get(".col-sm-9 > .btn-default")
             .click()
             .then(() => {
@@ -152,7 +152,7 @@ describe("My Second Test Suite", function () {
           ///cy.wait(5000);
           cy.get('[data-qa="continue-button"]').click();
 
-          // Verify the invoice.txt file exists in the project
+          // Verify the invoice.txt file exists in the project (17)
           //Attempt-1
           /*
           cy.readFile(
@@ -180,7 +180,7 @@ describe("My Second Test Suite", function () {
           // Remove the text file from the project
           cy.exec("rm cypress/downloads/invoice.txt"); */
 
-      //Log out from the website
+      //Log out from the website (18)
       cy.get(".nav > :nth-child(4) > a").click();
     });
   });
