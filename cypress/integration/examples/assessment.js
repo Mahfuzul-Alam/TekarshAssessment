@@ -9,13 +9,13 @@ describe("My Second Test Suite", function () {
     //Verifying the homepage (2)
     cy.get(".shop-menu > .nav > :nth-child(1)").should("be.visible");
 
-    //Signing up to the website (3)
+    //Signing up to the website. (3)
     cy.get(".shop-menu > .nav > :nth-child(4)").click();
     cy.get('[data-qa="signup-name"]').type("Mahfuzul Alam");
     cy.get('[data-qa="signup-email"]').type("mahfuzshanto12@gmail.com");
     cy.get('[data-qa="signup-button"]').click();
 
-    // Check if the user already exists
+    // Check if the user already exists.
     cy.get(".signup-form > form > p").then((messageElement) => {
       const message = messageElement.text();
 
@@ -164,7 +164,7 @@ describe("My Second Test Suite", function () {
         });
 
       //Attempt-2
-      /*  // Verify the invoice.txt file exists in the project
+      /* 
           cy.readFile("cypress/downloads/invoice.txt").should("exist");
 
           // Read the content of the file
